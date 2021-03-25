@@ -1,7 +1,9 @@
 #!/bin/bash
 
-INFLUXDB_VER=1.8.0
+INFLUXDB_VER=1.8.4
 INFLUXDB_TARBALL=influxdb-${INFLUXDB_VER}-static_linux_amd64.tar.gz
+INFLUXDB_FOLDER_NAME=influxdb-${INFLUXDB_VER}-1
+INFLUXDB_CONF=influxdb.conf
 
 CURRDIR=$(cd $(dirname $0) && pwd)
 ARCHIVES_TOP=${CURRDIR}/archives
@@ -15,19 +17,20 @@ function download()
 
 function extract()
 {
-  rm -rf influxdb-${INFLUXDB_VER}-1 || exit 1
+  rm -rf ${INFLUXDB_FOLDER_NAME} || exit 1
   tar zxfv ${INFLUXDB_TARBALL} || exit 1
-  rm -rf influxdb-${INFLUXDB_VER}-1/var || exit 1
 }
 
 function clean()
 {
-  rm -rf influxdb-${INFLUXDB_VER}-1/usr || exit 1
+  rm -rf ${INFLUXDB_FOLDER_NAME}/usr || exit 1
 }
 
 function collect()
 {
-  mv influxdb-${INFLUXDB_VER}-1/ archives || exit 1
+  mv ${INFLUXDB_FOLDER_NAME}/ archives || exit 1
+  sed -i 's/\/var\/lib\/influxdb/\/usr\/local\/sammtcbn\/influxdb/g' archives/${INFLUXDB_CONF} || exit 1
+  cp -f uninstall.bash archives/ || exit 1
 }
 
 rm -rf ${ARCHIVES_TOP} || exit 1

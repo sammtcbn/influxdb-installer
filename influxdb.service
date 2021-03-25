@@ -1,0 +1,15 @@
+[Unit]
+Description=InfluxDB Service
+After=network.target systemd-sysctl.service systemd-modules-load.service
+
+[Service]
+User=root
+WorkingDirectory=/usr/local/sammtcbn/influxdb
+Restart=no
+Type=simple
+ExecStart=/usr/local/sammtcbn/influxdb/influxd -config influxdb.conf
+RemainAfterExit=true
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
