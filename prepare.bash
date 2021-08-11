@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INFLUXDB_VER=1.8.7
+INFLUXDB_VER=1.8.9
 INFLUXDB_TARBALL=influxdb-${INFLUXDB_VER}-static_linux_amd64.tar.gz
 INFLUXDB_FOLDER_NAME=influxdb-${INFLUXDB_VER}-1
 INFLUXDB_CONF=influxdb.conf
