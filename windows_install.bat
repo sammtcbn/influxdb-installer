@@ -5,9 +5,12 @@ cd /d "%currdir%"
 
 mkdir C:\influxdb
 
-copy /Y "%currdir%\win_service_create.bat" C:\influxdb
-copy /Y "%currdir%\win_service_delete.bat" C:\influxdb
+copy /Y "%currdir%\windows_service_create.bat" C:\influxdb
+copy /Y "%currdir%\windows_service_delete.bat" C:\influxdb
 copy /Y "%currdir%\nssm.exe" C:\influxdb
+
+sed -i "s|/var/lib/influxdb/||g" influxdb\influxdb.conf
+
 xcopy /Y "%currdir%\influxdb\*.*" C:\influxdb
 
 :END
