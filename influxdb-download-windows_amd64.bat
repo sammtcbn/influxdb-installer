@@ -3,7 +3,7 @@ set currdir=%~dp0
 IF "%currdir:~-1%"=="\" SET currdir=%currdir:~0,-1%
 cd /d "%currdir%"
 
-set INFLUXDB_VER=1.8.9
+set INFLUXDB_VER=1.8.10
 set zipfile=influxdb-%INFLUXDB_VER%_windows_amd64.zip
 set INFLUXDB_FOLDER_NAME=influxdb-%INFLUXDB_VER%-1
 
